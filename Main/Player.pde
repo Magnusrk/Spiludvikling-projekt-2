@@ -25,7 +25,7 @@ class Player {
     rectMode(CENTER);
     pushMatrix();
     translate(location.x, location.y);
-
+    rotate(angle);
     noStroke();
     fill(#009FFF, 40);
     ellipse(0, 0, 90, 110);
