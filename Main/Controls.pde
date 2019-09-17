@@ -104,6 +104,7 @@ void controls()
   }
   if (sPressed==true)
   {
+    p1.shoot();
   }
   if (dPressed==true)
   {
