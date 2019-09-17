@@ -12,6 +12,8 @@ Boolean rightPressed = false;
 
 
 float AddAngle = 0.1;
+boolean bulletbuffer1 = true;
+boolean bulletbuffer2 = true;
 
 void keyPressed() 
 {
@@ -104,7 +106,11 @@ void controls()
   }
   if (sPressed==true)
   {
+    if(bulletbuffer1==true)
+    {
     p1.shoot();
+    bulletbuffer1=false;
+    }
   }
   if (dPressed==true)
   {
@@ -121,7 +127,11 @@ void controls()
   }
   if (downPressed==true)
   {
+    if(bulletbuffer2==true)
+    {
     p2.shoot();
+    bulletbuffer2=false;
+    }
   }
   if (rightPressed==true)
   {

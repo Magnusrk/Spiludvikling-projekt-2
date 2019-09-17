@@ -36,7 +36,11 @@ void draw() {
   fill(255);
   text(frameRate, 800, 200);
   
-  
+  if(frameCount%30==0)
+  {
+  bulletbuffer1=true;
+  bulletbuffer2=true;
+  }
   
   for (int i=0; i<800; i++)
   {
