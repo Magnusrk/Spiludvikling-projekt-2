@@ -1,6 +1,6 @@
 //Player 1 wasd
 Boolean wPressed;
-Boolean aPressed;
+Boolean aPressed = false;
 Boolean sPressed;
 Boolean dPressed;
 

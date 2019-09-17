@@ -1,4 +1,5 @@
 import java.util.Iterator;
+int counter = 0;
 ArrayList<ParticleSystem> systems;
 Player p1 = new Player(new PVector(500, 700), #FF0303);
 Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
