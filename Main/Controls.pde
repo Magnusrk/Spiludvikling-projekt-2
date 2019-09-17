@@ -3,13 +3,16 @@ Boolean wPressed;
 Boolean aPressed;
 Boolean sPressed;
 Boolean dPressed;
-Boolean shiftPressed;
 
 //Player2 Arrowkeys
-
+Boolean upPressed;
+Boolean leftPressed;
+Boolean downPressed;
+Boolean rightPressed;
 
 void keyPressed() 
 {
+  //Player 1 
   if(key == 'w')
   {
     wPressed = true;
@@ -26,14 +29,30 @@ void keyPressed()
   {
     dPressed = true;
   }
-   if(keyCode == SHIFT)
+  
+  //Player 2
+    if(key == UP)
   {
-    shiftPressed = true;
+    upPressed = true;
   }
+   if(key == LEFT)
+  {
+    leftPressed = true;
+  }
+   if(key == DOWN)
+  {
+    downPressed = true;
+  }
+   if(key == RIGHT)
+  {
+    rightPressed = true;
+  }
+
 }
 
 void keyReleased() 
 {
+  //Player 1
   if(key == 'w')
   {
     wPressed = false;
@@ -50,8 +69,23 @@ void keyReleased()
   {
     dPressed = false;
   }
-   if(keyCode == SHIFT)
+
+//Player 2
+  if(key == UP)
   {
-    shiftPressed = false;
+    upPressed = false;
+  } 
+     if(key == LEFT)
+  {
+    leftPressed = false;
   }
+   if(key == DOWN)
+  {
+    downPressed = false;
+  }
+   if(key == RIGHT)
+  {
+    rightPressed = false;
+  }
+
 }
