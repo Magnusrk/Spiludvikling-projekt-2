@@ -121,6 +121,7 @@ void controls()
   }
   if (downPressed==true)
   {
+    p2.shoot();
   }
   if (rightPressed==true)
   {
