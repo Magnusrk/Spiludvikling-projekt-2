@@ -6,9 +6,9 @@ Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
 Powerup pow1 = new Powerup();
 
 
-float[] numbers = new float[1000];
-float[] numbers2 = new float[1000];
-float[] numbers3 = new float[1000];
+float[] stars = new float[800];
+float[] stars2 = new float[800];
+float[] stars3 = new float[800];
 
 void setup() {
   fullScreen();
@@ -17,11 +17,11 @@ void setup() {
   //systems.add(new ParticleSystem(new PVector(p1.location.x, p1.location.y+40), 255, 108, 10));
   //systems.add(new ParticleSystem(new PVector(p2.location.x, p2.location.y+40), 255, 108, 10));
   
-    for (int i=0; i<1000; i++)
+    for (int i=0; i<800; i++)
   {
-    numbers[i] = (random(0, 2000));
-    numbers2[i] = (random(0, 2000));
-    numbers3[i] = (random(1,3));
+    stars[i] = (random(0, width));
+    stars2[i] = (random(0, height));
+    stars3[i] = (random(1,3));
     
   }
   
@@ -33,9 +33,9 @@ void draw() {
   background(0);
   fill(255);
 
-  for (int i=0; i<1000; i++)
+  for (int i=0; i<800; i++)
   {
-   rect(numbers[i],numbers2[i],numbers3[i],numbers3[i]);
+   rect(stars[i],stars2[i],stars3[i],stars3[i]);
   }
 
   //for (ParticleSystem ps : systems) {
