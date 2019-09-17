@@ -11,14 +11,14 @@ class Player {
 
   Player(PVector loc, int col) {
     location = loc.get();
-    velocity = new PVector(0, 0);
+    velocity = new PVector(0, -1);
     acceleration = new PVector(0, 0);
     ammo = 100;
     score = 0;
     boost = 100;
     shields = 3;
     colour = col;
-    angle = 0;
+    angle = 2*PI;
   }
 
   void render() {
@@ -44,6 +44,11 @@ class Player {
     popMatrix();
   }
   void update() {
+    velocity.x = sin(angle);
+    velocity.y = -cos(angle);
+    velocity.mult(3);
+    println(velocity.x);
+    println(velocity.y);
     location.add(velocity);
     velocity.add(acceleration);
     acceleration.mult(0);
