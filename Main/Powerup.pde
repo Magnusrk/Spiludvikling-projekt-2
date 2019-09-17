@@ -17,7 +17,7 @@ class Powerup
    ellipse(0,0,40,40);
    fill(#0556FF);
    textSize(25);
-   text("p",-8,5);
+   text("P",-8,5);
    popMatrix();
   }
   
