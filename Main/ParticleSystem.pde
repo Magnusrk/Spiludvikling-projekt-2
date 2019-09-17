@@ -1,40 +1,20 @@
 class ParticleSystem {
   ArrayList<Particle> particles;
   PVector origin;
-  float R = 255;
+  float R = 0;
   float G = 0;
   float B = 0;
   float c = 0;
 
-  ParticleSystem(PVector loc) {
+  ParticleSystem(PVector loc, int r, int g, int b) {
     particles = new ArrayList<Particle>();
     origin = loc.get();
+    R = r;
+    G = g;
+    B = b;
   }
 
   void addParticle() {
-    if (c > 1530) { 
-      c = 0;
-    }
-    if ((c >= 0) && (c < 255)) {
-      B = B + 1;
-    }
-    if ((c >= 255) && (c < 510)) {
-      R = R - 1;
-    }
-    if ((c >= 510) && (c < 765)) {
-      G = G + 1;
-    }
-    if ((c >= 765) && (c < 1020)) {
-      B = B - 1;
-    }
-    if ((c >= 1020) && (c < 1275)) {
-      R = R + 1;
-    }
-    if ((c >= 1275) && (c < 1530)) {
-      G = G - 1;
-    }
-    print(c);
-    c++;
     particles.add(new Particle(origin, R, G, B));
   }
 
@@ -47,5 +27,5 @@ class ParticleSystem {
         it.remove();
       }
     }
-  }
+  } 
 }
