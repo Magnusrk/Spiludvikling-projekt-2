@@ -128,9 +128,10 @@ void controls()
   }
   if (downPressed==true)
   {
-    if(bulletbuffer2==true)
+    if(bulletbuffer2==true&& p2.ammo>0)
     {
     p2.shoot();
+    p2.ammo=p2.ammo-1;
     bulletbuffer2=false;
     }
   }
