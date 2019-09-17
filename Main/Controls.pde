@@ -1,14 +1,17 @@
 //Player 1 wasd
-Boolean wPressed;
-Boolean aPressed;
-Boolean sPressed;
-Boolean dPressed;
+Boolean wPressed = false;
+Boolean aPressed = false;
+Boolean sPressed = false;
+Boolean dPressed = false;
 
 //Player2 Arrowkeys
-Boolean upPressed;
-Boolean leftPressed;
-Boolean downPressed;
-Boolean rightPressed;
+Boolean upPressed = false;
+Boolean leftPressed = false;
+Boolean downPressed = false;
+Boolean rightPressed = false;
+
+
+float AddAngle = 0.1;
 
 void keyPressed() 
 {
@@ -31,19 +34,19 @@ void keyPressed()
   }
 
   //Player 2
-  if (key == UP)
+  if (keyCode == UP)
   {
     upPressed = true;
   }
-  if (key == LEFT)
+  if (keyCode == LEFT)
   {
     leftPressed = true;
   }
-  if (key == DOWN)
+  if (keyCode == DOWN)
   {
     downPressed = true;
   }
-  if (key == RIGHT)
+  if (keyCode == RIGHT)
   {
     rightPressed = true;
   }
@@ -70,19 +73,19 @@ void keyReleased()
   }
 
   //Player 2
-  if (key == UP)
+  if (keyCode == UP)
   {
     upPressed = false;
   } 
-  if (key == LEFT)
+  if (keyCode == LEFT)
   {
     leftPressed = false;
   }
-  if (key == DOWN)
+  if (keyCode == DOWN)
   {
     downPressed = false;
   }
-  if (key == RIGHT)
+  if (keyCode == RIGHT)
   {
     rightPressed = false;
   }
@@ -91,8 +94,35 @@ void keyReleased()
 
 void controls()
 {
+  //Player 1
+  if (wPressed==true)
+  {
+  }
   if (aPressed==true)
   {
-    p1.angle = p1.angle-0.01;
+    p1.angle = p1.angle -AddAngle;
+  }
+  if (sPressed==true)
+  {
+  }
+  if (dPressed==true)
+  {
+    p1.angle = p1.angle +AddAngle;
+  }
+  
+  //Player 2
+    if (upPressed==true)
+  {
+  }
+  if (leftPressed==true)
+  {
+    p2.angle = p2.angle -AddAngle;
+  }
+  if (downPressed==true)
+  {
+  }
+  if (rightPressed==true)
+  {
+    p2.angle = p2.angle +AddAngle;
   }
 }

@@ -28,7 +28,10 @@ class Particle {
   void display() {
     stroke(R, G, B, lifespan);
     fill(R, G, B, lifespan);
-    ellipse(location.x+random(-10, 10), location.y+random(-10, 10), 13, 13);
+    pushMatrix();
+    translate(location.x,location.y);
+    ellipse(0+random(-10, 10), 0+random(-10, 10), 13, 13);
+    popMatrix();
   }
   boolean isDead() {
     if (lifespan < 0) {
