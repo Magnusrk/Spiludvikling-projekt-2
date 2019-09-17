@@ -19,9 +19,11 @@ void HUD()
     }
   }
   fill(#8E05FF);
-    text("Shields: ", 100, 100);
+  text("Shields: ", 100, 100);
   text("Ammo: "+ p1.ammo, 100, 150);
   text("Boost: "+ p1.boost, 100, 200);
+  textSize(50);
+  text("Score: "+p1.score, 1000, 200);
   popMatrix();
 
 
@@ -47,5 +49,7 @@ void HUD()
   text("Shields: ", 1500, 100);
   text("Ammo: "+ p2.ammo, 1500, 150);
   text("Boost: "+ p2.boost, 1500, 200);
+  textSize(50);
+  text("Score: "+p2.score, 500, 200);
   popMatrix();
 }
