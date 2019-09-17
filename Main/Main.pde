@@ -35,6 +35,15 @@ void draw() {
   background(0);
   fill(255);
   text(frameRate, 800, 200);
+  
+  
+  
+  for (int i=0; i<800; i++)
+  {
+    rect(stars[i], stars2[i], stars3[i], stars3[i]);
+  }
+  
+  
   for (Bullets b1 : p1Bullets) {
     b1.render();
     b1.update();
@@ -58,10 +67,6 @@ void draw() {
   p2.render();
   controls();
 
-  for (int i=0; i<800; i++)
-  {
-    rect(stars[i], stars2[i], stars3[i], stars3[i]);
-  }
 
   //for (ParticleSystem ps : systems) {
   //ps.addParticle();
