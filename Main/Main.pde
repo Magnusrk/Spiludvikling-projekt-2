@@ -48,11 +48,22 @@ void draw() {
     b1.render();
     b1.update();
   }
+    for (Bullets b2 : p2Bullets) {
+    b2.render();
+    b2.update();
+  }
   Iterator<Bullets> it1 = p1Bullets.iterator();
   while (it1.hasNext()) {
     Bullets b = it1.next();
     if (b.location.x > 1920 || b.location.x < 0) {
       it1.remove();
+    }
+  }
+    Iterator<Bullets> it2 = p2Bullets.iterator();
+  while (it2.hasNext()) {
+    Bullets b2 = it2.next();
+    if (b2.location.x > 1920 || b2.location.x < 0) {
+      it2.remove();
     }
   }
 
