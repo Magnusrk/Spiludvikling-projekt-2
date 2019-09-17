@@ -15,11 +15,12 @@ void setup() {
 void draw() {
   background(0);
   fill(255);
-  text(frameRate, 600, 600);
+  text(frameRate, 100, 100);
   for (ParticleSystem ps : systems) {
     ps.addParticle();
     ps.run();
   }
     p1.render();
     p2.render();
+    controls();
 }

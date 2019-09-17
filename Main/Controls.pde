@@ -13,79 +13,86 @@ Boolean rightPressed;
 void keyPressed() 
 {
   //Player 1 
-  if(key == 'w')
+  if (key == 'w')
   {
     wPressed = true;
   }
-   if(key == 'a')
+  if (key == 'a')
   {
     aPressed = true;
   }
-   if(key == 's')
+  if (key == 's')
   {
     sPressed = true;
   }
-   if(key == 'd')
+  if (key == 'd')
   {
     dPressed = true;
   }
-  
+
   //Player 2
-    if(key == UP)
+  if (key == UP)
   {
     upPressed = true;
   }
-   if(key == LEFT)
+  if (key == LEFT)
   {
     leftPressed = true;
   }
-   if(key == DOWN)
+  if (key == DOWN)
   {
     downPressed = true;
   }
-   if(key == RIGHT)
+  if (key == RIGHT)
   {
     rightPressed = true;
   }
-
 }
 
 void keyReleased() 
 {
   //Player 1
-  if(key == 'w')
+  if (key == 'w')
   {
     wPressed = false;
   } 
-     if(key == 'a')
+  if (key == 'a')
   {
     aPressed = false;
   }
-   if(key == 's')
+  if (key == 's')
   {
     sPressed = false;
   }
-   if(key == 'd')
+  if (key == 'd')
   {
     dPressed = false;
   }
 
-//Player 2
-  if(key == UP)
+  //Player 2
+  if (key == UP)
   {
     upPressed = false;
   } 
-     if(key == LEFT)
+  if (key == LEFT)
   {
     leftPressed = false;
   }
-   if(key == DOWN)
+  if (key == DOWN)
   {
     downPressed = false;
   }
-   if(key == RIGHT)
+  if (key == RIGHT)
   {
     rightPressed = false;
   }
+}
 
+
+void controls()
+{
+  if (aPressed==true)
+  {
+    p1.angle = p1.angle-0.01;
+  }
 }
