@@ -1,5 +1,6 @@
 import java.util.Iterator;
 int counter = 0;
+ArrayList<Enemy> Enemies;
 ArrayList<Bullets> p1Bullets;
 ArrayList<Bullets> p2Bullets;
 ArrayList<Powerup> PowerUps;
@@ -17,6 +18,7 @@ float[] stars3 = new float[800];
 void setup() {
   fullScreen();
   systems = new ArrayList<ParticleSystem>();
+  Enemies = new ArrayList<Enemy>();
   frameRate(60);
   p1Bullets = new ArrayList<Bullets>();
   p2Bullets = new ArrayList<Bullets>();
@@ -57,7 +59,12 @@ void draw() {
     textSize(100);
     text("TITLE",800,300);
     
-   
+    
+
+    if (mouseX>width/2)
+    {
+      stage++;
+    }
   } else 
   {
 
@@ -120,6 +127,15 @@ void draw() {
 
     if (frameCount%120 == 0) {
       PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
+    }
+    
+    if (frameCount%100 == 0) {
+      Enemies.add(new Enemy());
+    }
+    
+    for (Enemy en : Enemies) {
+      en.render();
+      en.update();
     }
 
     p1.render();
