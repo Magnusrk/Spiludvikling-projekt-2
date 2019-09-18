@@ -97,8 +97,9 @@ void keyReleased()
 void controls()
 {
   //Player 1
-  if (wPressed==true)
+  if (wPressed==true && p1.boost>0)
   {
+    p1.boost();
   }
   if (aPressed==true)
   {
@@ -119,8 +120,9 @@ void controls()
   }
   
   //Player 2
-    if (upPressed==true)
+    if (upPressed==true && p2.boost>0)
   {
+    p2.boost();
   }
   if (leftPressed==true)
   {

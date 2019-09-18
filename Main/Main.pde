@@ -43,11 +43,13 @@ void draw() {
   bulletbuffer2=true;
   }
   
+  pushMatrix();
+  noStroke();
   for (int i=0; i<800; i++)
   {
     rect(stars[i], stars2[i], stars3[i], stars3[i]);
   }
-  
+  popMatrix();
   
   for (Bullets b1 : p1Bullets) {
     b1.render();
@@ -87,10 +89,21 @@ void draw() {
 
 
 
-  if (frameCount >200)
+
+  pow1.render();
+  
+  if (50 > sqrt(sq(p1.location.x-pow1.location.x)+sq(p1.location.y-pow1.location.y)))
   {
-    pow1.render();
+    p1.ammo= p1.ammo+10;
+    pow1.update();
   }
+  
+    if (50 > sqrt(sq(p2.location.x-pow1.location.x)+sq(p2.location.y-pow1.location.y)))
+  {
+    p2.ammo= p2.ammo+10;
+    pow1.update();
+  }
+  
   p1.render();
   p2.render();
   controls();
