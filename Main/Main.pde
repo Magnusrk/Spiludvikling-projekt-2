@@ -8,6 +8,7 @@ Player p1 = new Player(new PVector(500, 700), #FF0303);
 Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
 float test = 0;
 
+int stage =0;
 
 float[] stars = new float[800];
 float[] stars2 = new float[800];
@@ -34,6 +35,15 @@ void setup() {
 
 
 void draw() {
+  if (stage == 0)
+  {
+    background(255);
+  }
+  else 
+  {
+    
+  }
+  
   background(0);
   fill(255);
   text(frameRate, 800, 200);
