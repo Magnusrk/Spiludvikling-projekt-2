@@ -77,11 +77,11 @@ void draw() {
     while (it3.hasNext()) {
       ParticleSystem p = it3.next();
       if(test%2==0) {
-        p.origin.x = p1.location.x + (p1.velocity.mag()*cos(p1.angle));
-        p.origin.y = p1.location.y + (p1.velocity.mag()*sin(p1.angle));
+        p.origin.x = p1.location.x - (p1.velocity.mag()*sin(p1.angle))*15;
+        p.origin.y = p1.location.y + (p1.velocity.mag()*cos(p1.angle))*15;
       } else if(test%2==1) {
-        p.origin.x = p2.location.x + (p2.velocity.mag()*cos(p2.angle));
-        p.origin.y = p2.location.y + (p2.velocity.mag()*sin(p2.angle));
+        p.origin.x = p2.location.x - (p2.velocity.mag()*sin(p2.angle))*15;
+        p.origin.y = p2.location.y + (p2.velocity.mag()*cos(p2.angle))*15;
       }
       test++;
     }
