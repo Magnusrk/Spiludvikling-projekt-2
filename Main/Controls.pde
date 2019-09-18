@@ -149,4 +149,9 @@ void mousePressed()
   {
     stage = 1;
   }
+  
+  if ((mouseX>width/2-150) && (mouseY>height/2-50+150) && (mouseX<width/2+150) && (mouseY<height/2+50+150) && stage==0) 
+  {
+    stage = 2;
+  }
 }

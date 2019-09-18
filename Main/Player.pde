@@ -55,6 +55,9 @@ class Player {
     if(ammo > 100) {
       ammo = 100;
     }
+    if(boost > 100) {
+      boost = 100;
+    }
 
   }
   

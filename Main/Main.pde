@@ -42,23 +42,24 @@ void draw() {
     {
       rect(stars[i], stars2[i], stars3[i], stars3[i]);
     }
-    
+
     rectMode(CENTER);
     rect(width/2, height/2, 300, 100);
     rect(width/2, height/2+150, 300, 100);
-    
+
     textSize(50);
     fill(0);
-    text("Play",width/2-45, height/2+10);
-    text("Controls",width/2-100, height/2+170);
-    
-    
+    text("Play", width/2-45, height/2+10);
+    text("Controls", width/2-100, height/2+170);
+
+
     fill(255);
     textSize(100);
-    text("TITLE",800,300);
-    
-   
-  } else 
+    text("TITLE", 800, 300);
+  } else if (stage==2)
+  {
+    background(255);
+  } else if (stage ==1)
   {
 
 
@@ -119,7 +120,10 @@ void draw() {
 
 
     if (frameCount%120 == 0) {
-      PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
+      float fasf = random(0, 1);
+      if ( fasf < 0.5) {
+        PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
+      }
     }
 
     p1.render();
@@ -138,7 +142,7 @@ void draw() {
 
 
 
-    HUD();
+
     for (Powerup pu : PowerUps) {
       pu.render();
     }
@@ -147,17 +151,35 @@ void draw() {
 
     while (it4.hasNext()) {
       Powerup pow = it4.next();
-      if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y))&& p1.ammo<100)
+      if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y)))
       {
-        p1.ammo= p1.ammo+10;
-        it4.remove();
+        if (pow.type == 1&& p1.ammo<100)
+        {
+          p1.ammo= p1.ammo+10;
+          it4.remove();
+        }
+        if (pow.type == 2)
+        {
+          p1.boost= p1.boost+50;
+          it4.remove();
+        }
       }
 
-      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) && p2.ammo<100)
+      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) )
       {
-        p2.ammo= p2.ammo+10;
-        it4.remove();
+        if (pow.type == 1 && p2.ammo<100)
+        {
+          p2.ammo= p2.ammo+10;
+          it4.remove();
+        }
+        if (pow.type == 2)
+        {
+          p2.boost= p2.boost+50;
+          it4.remove();
+        }
       }
     }
+
+    HUD();
   }
 }
