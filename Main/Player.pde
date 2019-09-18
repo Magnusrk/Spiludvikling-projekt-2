@@ -52,10 +52,22 @@ class Player {
     location.add(velocity);
     velocity.add(acceleration);
     acceleration.mult(0);
+
   }
   
   void shoot() {
     p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+  }
+  
+  void boost()
+  {
+    velocity.x = sin(angle);
+    velocity.y = -cos(angle);
+    velocity.mult(10);
+    location.add(velocity);
+    velocity.add(acceleration);
+    acceleration.mult(0);
+    boost = boost-1;
   }
     
 }
