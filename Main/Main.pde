@@ -125,6 +125,7 @@ void draw() {
   }
 
   Iterator<Powerup> it4 = PowerUps.iterator();
+  
   while (it4.hasNext()) {
     Powerup pow = it4.next();
     if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y)))
