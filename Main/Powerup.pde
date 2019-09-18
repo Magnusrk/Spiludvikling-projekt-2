@@ -15,19 +15,19 @@ class Powerup
     pushMatrix();
     translate(location.x, location.y);
     fill(255);
-    ellipse(0, 0, 40, 40);
+    ellipse(0, 0, 20, 20);
     fill(#0556FF);
-    textSize(25);
+    textSize(20);
 
 
     if ( r < 0.5)
     {
-      text("A", -9, 7);
+      text("A", -7, 7);
 
       type =1;
     } else
     {
-      text("B", -9, 7);
+      text("B", -7, 7);
       type=2;
     }
     popMatrix();

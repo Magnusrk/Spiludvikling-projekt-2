@@ -60,7 +60,21 @@ void draw() {
     text("TITLE", 800, 300);
   } else if (stage==2)
   {
-    background(255);
+    background(0);
+    fill(255);
+    text("Player 1", 100,500);
+    text("Shoot: s", 100,600);
+    text("Boost: w", 100,700);
+    text("Steer: a + d",100,800);
+    
+    text("Player 2", 1000,500);
+    text("Shoot: Down", 1000,600);
+    text("Boost: Up", 1000,700);
+    text("Steer: Left + Right",1000,800);
+    
+    rect(200,100,300,100);
+    fill(0);
+    text("Back",90,140);
   } else if (stage ==1) {
 
 
