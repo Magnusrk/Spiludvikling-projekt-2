@@ -57,6 +57,7 @@ class Player {
   
   void shoot() {
     p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+
   }
   
   void boost()

@@ -1,8 +1,7 @@
 class Powerup 
 {
   PVector location;
-  
-  
+    
   Powerup()
   {
     location = new PVector (random(100,900),random(100,900));
@@ -19,11 +18,7 @@ class Powerup
    textSize(25);
    text("A",-9,7);
    popMatrix();
+
   }
   
-  void update()
-  {
-    location = new PVector (random(100,900),random(100,900));
-    
-  }
 }
