@@ -4,6 +4,7 @@ class Enemy
   PVector velocity;
   int award;
   int size;
+  int type = 0;
   Enemy() {
     float r = random(0, 1);
     if (r < 0.5) {
@@ -20,7 +21,8 @@ class Enemy
   void render()
   {
     fill(255, 0, 0);
-    ellipse(location.x, location.y, size, size);
+    textSize(80);
+    text("*", location.x, location.y);
   }
 
   void update()
