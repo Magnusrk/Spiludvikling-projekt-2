@@ -152,13 +152,13 @@ void draw() {
 
     while (it4.hasNext()) {
       Powerup pow = it4.next();
-      if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y))&& p1.ammo<91)
+      if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y))&& p1.ammo<100)
       {
         p1.ammo= p1.ammo+10;
         it4.remove();
       }
 
-      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) && p2.ammo<91)
+      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) && p2.ammo<100)
       {
         p2.ammo= p2.ammo+10;
         it4.remove();

@@ -52,6 +52,9 @@ class Player {
     location.add(velocity);
     velocity.add(acceleration);
     acceleration.mult(0);
+    if(ammo > 100) {
+      ammo = 100;
+    }
 
   }
   
