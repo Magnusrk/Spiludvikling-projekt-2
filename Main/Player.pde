@@ -52,20 +52,18 @@ class Player {
     location.add(velocity);
     velocity.add(acceleration);
     acceleration.mult(0);
-    if(ammo > 100) {
+    if (ammo > 100) {
       ammo = 100;
     }
-    if(boost > 100) {
+    if (boost > 100) {
       boost = 100;
     }
-
   }
-  
+
   void shoot() {
     p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
-
   }
-  
+
   void boost()
   {
     velocity.x = sin(angle);
@@ -76,5 +74,4 @@ class Player {
     acceleration.mult(0);
     boost = boost-1;
   }
-    
 }

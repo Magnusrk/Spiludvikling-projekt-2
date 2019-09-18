@@ -27,5 +27,5 @@ class ParticleSystem {
         it.remove();
       }
     }
-  } 
+  }
 }

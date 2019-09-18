@@ -107,20 +107,20 @@ void controls()
   }
   if (sPressed==true)
   {
-    if(bulletbuffer1==true && p1.ammo>0)
+    if (bulletbuffer1==true && p1.ammo>0)
     {
-    p1.shoot();
-    p1.ammo=p1.ammo-1;
-    bulletbuffer1=false;
+      p1.shoot();
+      p1.ammo=p1.ammo-1;
+      bulletbuffer1=false;
     }
   }
   if (dPressed==true)
   {
     p1.angle = p1.angle +AddAngle;
   }
-  
+
   //Player 2
-    if (upPressed==true && p2.boost>0)
+  if (upPressed==true && p2.boost>0)
   {
     p2.boost();
   }
@@ -130,11 +130,11 @@ void controls()
   }
   if (downPressed==true)
   {
-    if(bulletbuffer2==true&& p2.ammo>0)
+    if (bulletbuffer2==true&& p2.ammo>0)
     {
-    p2.shoot();
-    p2.ammo=p2.ammo-1;
-    bulletbuffer2=false;
+      p2.shoot();
+      p2.ammo=p2.ammo-1;
+      bulletbuffer2=false;
     }
   }
   if (rightPressed==true)
@@ -149,7 +149,7 @@ void mousePressed()
   {
     stage = 1;
   }
-  
+
   if ((mouseX>width/2-150) && (mouseY>height/2-50+150) && (mouseX<width/2+150) && (mouseY<height/2+50+150) && stage==0) 
   {
     stage = 2;
