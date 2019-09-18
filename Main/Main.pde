@@ -6,7 +6,6 @@ ArrayList<Powerup> PowerUps;
 ArrayList<ParticleSystem> systems;
 Player p1 = new Player(new PVector(500, 700), #FF0303);
 Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
-Powerup pow1 = new Powerup();
 float test = 0;
 
 
@@ -90,18 +89,8 @@ void draw() {
 
 
 
-
-
-  pow1.render();
-
-  if (50 > sqrt(sq(p1.location.x-pow1.location.x)+sq(p1.location.y-pow1.location.y)))
-  {
-    p1.ammo= p1.ammo+10;
-  }
-
-  if (50 > sqrt(sq(p2.location.x-pow1.location.x)+sq(p2.location.y-pow1.location.y)))
-  {
-    p2.ammo= p2.ammo+10;
+  if (frameCount%120 == 0) {
+    PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
   }
 
   p1.render();
@@ -121,11 +110,23 @@ void draw() {
 
 
   HUD();
-  for(Powerup pu : PowerUps) {
+  for (Powerup pu : PowerUps) {
     pu.render();
   }
 
-  if (frameRate%120==0) {
-    PowerUps.add(new Powerup());
+  Iterator<Powerup> it4 = PowerUps.iterator();
+  while (it4.hasNext()) {
+    Powerup pow = it4.next();
+    if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y)))
+    {
+      p1.ammo= p1.ammo+10;
+      it4.remove();
+    }
+
+    if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)))
+    {
+      p2.ammo= p2.ammo+10;
+      it4.remove();
+    }
   }
 }

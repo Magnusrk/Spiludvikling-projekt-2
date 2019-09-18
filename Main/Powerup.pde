@@ -2,9 +2,9 @@ class Powerup
 {
   PVector location;
     
-  Powerup()
+  Powerup(PVector loc)
   {
-    location = new PVector (random(100,900),random(100,900));
+    location = loc;
   }
   
   
