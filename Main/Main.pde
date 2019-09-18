@@ -2,10 +2,11 @@ import java.util.Iterator;
 int counter = 0;
 ArrayList<Bullets> p1Bullets;
 ArrayList<Bullets> p2Bullets;
-//ArrayList<ParticleSystem> systems;
+ArrayList<ParticleSystem> systems;
 Player p1 = new Player(new PVector(500, 700), #FF0303);
 Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
 Powerup pow1 = new Powerup();
+float test = 0;
 
 
 float[] stars = new float[800];
@@ -14,12 +15,12 @@ float[] stars3 = new float[800];
 
 void setup() {
   fullScreen();
-  //systems = new ArrayList<ParticleSystem>();
+  systems = new ArrayList<ParticleSystem>();
   frameRate(60);
   p1Bullets = new ArrayList<Bullets>();
   p2Bullets = new ArrayList<Bullets>();
-  //systems.add(new ParticleSystem(new PVector(p1.location.x, p1.location.y+40), 255, 108, 10));
-  //systems.add(new ParticleSystem(new PVector(p2.location.x, p2.location.y+40), 255, 108, 10));
+  systems.add(new ParticleSystem(new PVector(p1.location.x, p1.location.y+40), 255, 108, 10));
+  systems.add(new ParticleSystem(new PVector(p2.location.x, p2.location.y+40), 255, 108, 10));
 
   for (int i=0; i<800; i++)
   {
@@ -70,6 +71,18 @@ void draw() {
       it2.remove();
     }
   }
+  Iterator<ParticleSystem> it3 = systems.iterator();
+    while (it3.hasNext()) {
+      ParticleSystem p = it3.next();
+      if(test%2==0) {
+        p.origin.x = p1.location.x + (p1.velocity.mag()*cos(p1.angle));
+        p.origin.y = p1.location.y + (p1.velocity.mag()*sin(p1.angle));
+      } else if(test%2==1) {
+        p.origin.x = p2.location.x + (p2.velocity.mag()*cos(p2.angle));
+        p.origin.y = p2.location.y + (p2.velocity.mag()*sin(p2.angle));
+      }
+      test++;
+    }
 
 
 
@@ -83,10 +96,10 @@ void draw() {
   controls();
 
 
-  //for (ParticleSystem ps : systems) {
-  //ps.addParticle();
-  //ps.run();
-  //}
+  for (ParticleSystem ps : systems) {
+  ps.addParticle();
+  ps.run();
+  }
 
 
   p1.update();
