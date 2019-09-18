@@ -9,6 +9,7 @@ Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
 Powerup pow1 = new Powerup();
 float test = 0;
 
+int stage =0;
 
 float[] stars = new float[800];
 float[] stars2 = new float[800];
@@ -35,6 +36,15 @@ void setup() {
 
 
 void draw() {
+  if (stage == 0)
+  {
+    background(255);
+  }
+  else 
+  {
+    
+  }
+  
   background(0);
   fill(255);
   text(frameRate, 800, 200);
@@ -121,7 +131,7 @@ void draw() {
 
 
   HUD();
-  for(Powerup pu : PowerUps) {
+  for (Powerup pu : PowerUps) {
     pu.render();
   }
 
