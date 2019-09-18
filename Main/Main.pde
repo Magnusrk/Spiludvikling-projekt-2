@@ -1,5 +1,6 @@
 import java.util.Iterator;
 int counter = 0;
+ArrayList<Enemy> Enemies;
 ArrayList<Bullets> p1Bullets;
 ArrayList<Bullets> p2Bullets;
 ArrayList<Powerup> PowerUps;
@@ -17,6 +18,7 @@ float[] stars3 = new float[800];
 void setup() {
   fullScreen();
   systems = new ArrayList<ParticleSystem>();
+  Enemies = new ArrayList<Enemy>();
   frameRate(60);
   p1Bullets = new ArrayList<Bullets>();
   p2Bullets = new ArrayList<Bullets>();
@@ -59,127 +61,135 @@ void draw() {
   } else if (stage==2)
   {
     background(255);
-  } else if (stage ==1)
+  } else if (stage ==1){
+
+
+
+  background(0);
+  fill(255);
+  text(frameRate, 800, 200);
+
+  if (frameCount%30==0)
   {
-
-
-
-    background(0);
-    fill(255);
-    text(frameRate, 800, 200);
-
-    if (frameCount%30==0)
-    {
-      bulletbuffer1=true;
-      bulletbuffer2=true;
-    }
-
-    pushMatrix();
-    noStroke();
-    for (int i=0; i<800; i++)
-    {
-      rect(stars[i], stars2[i], stars3[i], stars3[i]);
-    }
-    popMatrix();
-
-    for (Bullets b1 : p1Bullets) {
-      b1.render();
-      b1.update();
-    }
-    for (Bullets b2 : p2Bullets) {
-      b2.render();
-      b2.update();
-    }
-    Iterator<Bullets> it1 = p1Bullets.iterator();
-    while (it1.hasNext()) {
-      Bullets b = it1.next();
-      if (b.location.x > 1920 || b.location.x < 0) {
-        it1.remove();
-      }
-    }
-    Iterator<Bullets> it2 = p2Bullets.iterator();
-    while (it2.hasNext()) {
-      Bullets b2 = it2.next();
-      if (b2.location.x > 1920 || b2.location.x < 0) {
-        it2.remove();
-      }
-    }
-    Iterator<ParticleSystem> it3 = systems.iterator();
-    while (it3.hasNext()) {
-      ParticleSystem p = it3.next();
-      if (test%2==0) {
-        p.origin.x = p1.location.x - (p1.velocity.mag()*sin(p1.angle))*15;
-        p.origin.y = p1.location.y + (p1.velocity.mag()*cos(p1.angle))*15;
-      } else if (test%2==1) {
-        p.origin.x = p2.location.x - (p2.velocity.mag()*sin(p2.angle))*15;
-        p.origin.y = p2.location.y + (p2.velocity.mag()*cos(p2.angle))*15;
-      }
-      test++;
-    }
-
-
-
-    if (frameCount%120 == 0) {
-      float fasf = random(0, 1);
-      if ( fasf < 0.5) {
-        PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
-      }
-    }
-
-    p1.render();
-    p2.render();
-    controls();
-
-
-    for (ParticleSystem ps : systems) {
-      ps.addParticle();
-      ps.run();
-    }
-
-
-    p1.update();
-    p2.update();
-
-
-
-
-    for (Powerup pu : PowerUps) {
-      pu.render();
-    }
-
-    Iterator<Powerup> it4 = PowerUps.iterator();
-
-    while (it4.hasNext()) {
-      Powerup pow = it4.next();
-      if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y)))
-      {
-        if (pow.type == 1&& p1.ammo<100)
-        {
-          p1.ammo= p1.ammo+10;
-          it4.remove();
-        }
-        if (pow.type == 2)
-        {
-          p1.boost= p1.boost+50;
-          it4.remove();
-        }
-      }
-
-      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) )
-      {
-        if (pow.type == 1 && p2.ammo<100)
-        {
-          p2.ammo= p2.ammo+10;
-          it4.remove();
-        }
-        if (pow.type == 2)
-        {
-          p2.boost= p2.boost+50;
-          it4.remove();
-        }
-      }
-    }
-
-    HUD();
+    bulletbuffer1=true;
+    bulletbuffer2=true;
   }
+
+  pushMatrix();
+  noStroke();
+  for (int i=0; i<800; i++)
+  {
+    rect(stars[i], stars2[i], stars3[i], stars3[i]);
+  }
+  popMatrix();
+
+  for (Bullets b1 : p1Bullets) {
+    b1.render();
+    b1.update();
+  }
+  for (Bullets b2 : p2Bullets) {
+    b2.render();
+    b2.update();
+  }
+  Iterator<Bullets> it1 = p1Bullets.iterator();
+  while (it1.hasNext()) {
+    Bullets b = it1.next();
+    if (b.location.x > 1920 || b.location.x < 0) {
+      it1.remove();
+    }
+  }
+  Iterator<Bullets> it2 = p2Bullets.iterator();
+  while (it2.hasNext()) {
+    Bullets b2 = it2.next();
+    if (b2.location.x > 1920 || b2.location.x < 0) {
+      it2.remove();
+    }
+  }
+  Iterator<ParticleSystem> it3 = systems.iterator();
+  while (it3.hasNext()) {
+    ParticleSystem p = it3.next();
+    if (test%2==0) {
+      p.origin.x = p1.location.x - (p1.velocity.mag()*sin(p1.angle))*15;
+      p.origin.y = p1.location.y + (p1.velocity.mag()*cos(p1.angle))*15;
+    } else if (test%2==1) {
+      p.origin.x = p2.location.x - (p2.velocity.mag()*sin(p2.angle))*15;
+      p.origin.y = p2.location.y + (p2.velocity.mag()*cos(p2.angle))*15;
+    }
+    test++;
+  }
+
+
+
+  if (frameCount%120 == 0) {
+    float fasf = random(0, 1);
+    if ( fasf < 0.5) {
+      PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
+    }
+  }
+
+  if (frameCount%100 == 0) {
+    Enemies.add(new Enemy());
+  }
+
+  for (Enemy en : Enemies) {
+    en.render();
+    en.update();
+  }
+
+  p1.render();
+  p2.render();
+  controls();
+
+
+  for (ParticleSystem ps : systems) {
+    ps.addParticle();
+    ps.run();
+  }
+
+
+  p1.update();
+  p2.update();
+
+
+
+
+  for (Powerup pu : PowerUps) {
+    pu.render();
+  }
+
+  Iterator<Powerup> it4 = PowerUps.iterator();
+
+  while (it4.hasNext()) {
+    Powerup pow = it4.next();
+    if (50 > sqrt(sq(p1.location.x-pow.location.x)+sq(p1.location.y-pow.location.y)))
+    {
+      if (pow.type == 1&& p1.ammo<100)
+      {
+        p1.ammo= p1.ammo+10;
+        it4.remove();
+      }
+      if (pow.type == 2)
+      {
+        p1.boost= p1.boost+50;
+        it4.remove();
+      }
+    }
+
+    if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) )
+    {
+      if (pow.type == 1 && p2.ammo<100)
+      {
+        p2.ammo= p2.ammo+10;
+        it4.remove();
+      }
+      if (pow.type == 2)
+      {
+        p2.boost= p2.boost+50;
+        it4.remove();
+      }
+    }
+  }
+
+  HUD();
+}
 }
