@@ -142,3 +142,11 @@ void controls()
     p2.angle = p2.angle +AddAngle;
   }
 }
+
+void mousePressed()
+{
+  if ((mouseX>width/2-150) && (mouseY>height/2-50) && (mouseX<width/2+150) && (mouseY<height/2+50) && stage==0) 
+  {
+    stage = 1;
+  }
+}

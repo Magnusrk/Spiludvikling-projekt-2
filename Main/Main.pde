@@ -57,12 +57,7 @@ void draw() {
     textSize(100);
     text("TITLE",800,300);
     
-    
-
-    if (mouseX>width/2)
-    {
-      stage++;
-    }
+   
   } else 
   {
 
