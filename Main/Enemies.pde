@@ -1,5 +1,8 @@
 class Enemy
 {
+  PVector location;
+  PVector velocity;
+  int award; 
   Enemy() {
   }
   
@@ -7,7 +10,7 @@ class Enemy
   {
   }
   
-  void display()
+  void update()
   {
   }
 }
