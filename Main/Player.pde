@@ -75,12 +75,12 @@ class Player {
     if (shields ==0)
     {
       dead = true;
-      playerdeath.play();
-      ellipse(location.x,location.y,150,150);
-      if(frameCount %60==0)
+    
+      ellipse(location.x, location.y, 150, 150);
+      if (frameCount %60==0)
       {
-      location.x=location.x+10000;
-      location.y=location.y+10000;
+        location.x=location.x+10000;
+        location.y=location.y+10000;
       }
     }
   }

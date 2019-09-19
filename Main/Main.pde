@@ -21,10 +21,10 @@ float[] stars2 = new float[800];
 float[] stars3 = new float[800];
 void setup() {
   fullScreen();
-  
+
   blast = new SoundFile(this, "blast.mp3");
   enemydeath = new SoundFile(this, "enemydeath.mp3");
-  playerdeath = new SoundFile(this, "playerdeath.mp3");
+  playerdeath = new SoundFile(this, "playerdeath.wav");
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
@@ -183,12 +183,14 @@ void draw() {
         if (e.type == 0 && 25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
+          enemydeath.play();
           p1.score = p1.score + e.award;
         } 
         // Enemy type 1 collision with player 1 bullets
         else if (e.type == 1 && 55 > dist(e.location.x, e.location.y, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
+          enemydeath.play();
           p1.score = p1.score + e.award;
           //Enemies.add(new Enemy(0, new PVector(1, 1), e.location));
           //Enemies.add(new Enemy(0, new PVector(1, -1), e.location));
@@ -213,11 +215,13 @@ void draw() {
         if (e.type == 0 && 25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
           it6.remove();
           it2.remove();
+          enemydeath.play();
           p2.score = p2.score + e.award;
           //bullet collisions with type 1 enemies
         } else if (e.type == 1 && 55 > dist(e.location.x, e.location.y, b2.location.x, b2.location.y)) {
           it6.remove();
           it2.remove();
+          enemydeath.play();
           p2.score = p2.score + e.award;
         }
       }
