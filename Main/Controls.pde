@@ -110,6 +110,7 @@ void controls()
     if (bulletbuffer1==true && p1.ammo>0)
     {
       p1.shoot();
+      blast.play();
       p1.ammo=p1.ammo-1;
       bulletbuffer1=false;
     }

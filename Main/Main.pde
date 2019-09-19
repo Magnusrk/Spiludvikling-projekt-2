@@ -1,4 +1,11 @@
 import java.util.Iterator;
+import processing.sound.*;
+
+//sound files
+SoundFile blast;
+SoundFile enemydeath;
+SoundFile playerdeath;
+
 int counter = 0;
 ArrayList<Enemy> Enemies;
 ArrayList<Bullets> p1Bullets;
@@ -14,6 +21,10 @@ float[] stars2 = new float[800];
 float[] stars3 = new float[800];
 void setup() {
   fullScreen();
+  
+  blast = new SoundFile(this, "blast.mp3");
+  enemydeath = new SoundFile(this, "enemydeath.mp3");
+  playerdeath = new SoundFile(this, "playerdeath.mp3");
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
@@ -30,6 +41,25 @@ void setup() {
   }
 }
 void draw() {
+  if (p1.shields ==0 || p2.shields==0)
+  {
+    if (frameCount %200==0)
+    {
+      if (p1.score > p2.score)
+      {
+        stage =3;
+      }
+
+      if (p1.score < p2.score)
+      {
+        stage =4;
+      }
+      if (p1.score == p2.score)
+      {
+        stage =5;
+      }
+    }
+  }
   if (stage == 0)
   {
     background(0);
@@ -63,6 +93,32 @@ void draw() {
     fill(0);
     text("Back", 90, 140);
   } else if (stage ==1) {
+  }
+
+  pushMatrix();
+  textSize(100);
+  if (stage==3)
+  {
+    background(0);
+    fill(255);
+    text("Player 1 Wins", width/2-300, height/2);
+  } else if (stage ==4)
+  {
+    background(0);
+    fill(255);
+    text("Player 2 Wins", width/2-300, height/2);
+  } else if (stage ==5)
+  {
+    background(0);
+    fill(255);
+    text("Draw", width/2-100, height/2);
+  } 
+  popMatrix();
+
+  if (stage ==1) 
+  {
+
+
     background(0);
     fill(255);
     text(frameRate, 800, 200);
