@@ -62,19 +62,19 @@ void draw() {
   {
     background(0);
     fill(255);
-    text("Player 1", 100,500);
-    text("Shoot: s", 100,600);
-    text("Boost: w", 100,700);
-    text("Steer: a + d",100,800);
-    
-    text("Player 2", 1000,500);
-    text("Shoot: Down", 1000,600);
-    text("Boost: Up", 1000,700);
-    text("Steer: Left + Right",1000,800);
-    
-    rect(200,100,300,100);
+    text("Player 1", 100, 500);
+    text("Shoot: s", 100, 600);
+    text("Boost: w", 100, 700);
+    text("Steer: a + d", 100, 800);
+
+    text("Player 2", 1000, 500);
+    text("Shoot: Down", 1000, 600);
+    text("Boost: Up", 1000, 700);
+    text("Steer: Left + Right", 1000, 800);
+
+    rect(200, 100, 300, 100);
     fill(0);
-    text("Back",90,140);
+    text("Back", 90, 140);
   } else if (stage ==1) {
 
 
@@ -111,6 +111,14 @@ void draw() {
       if (b.location.x > 1920 || b.location.x < 0) {
         it1.remove();
       }
+      Iterator<Enemy> it5 = Enemies.iterator();
+      while (it5.hasNext()) {
+        Enemy e = it5.next();
+        if(25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
+          it5.remove();
+          it1.remove();
+        }
+      }
     }
     Iterator<Bullets> it2 = p2Bullets.iterator();
     while (it2.hasNext()) {
@@ -142,7 +150,7 @@ void draw() {
     }
 
     if (frameCount%100 == 0) {
-      Enemies.add(new Enemy());
+      Enemies.add(new Enemy(0));
     }
 
     for (Enemy en : Enemies) {
@@ -189,7 +197,7 @@ void draw() {
         }
       }
 
-      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) )
+      if (50 > dist(p2.location.x, p2.location.y, pow.location.x, pow.location.y) )
       {
         if (pow.type == 1 && p2.ammo<100)
         {
@@ -203,7 +211,6 @@ void draw() {
         }
       }
     }
-
     HUD();
   }
 }
