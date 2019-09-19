@@ -18,6 +18,7 @@ class Enemy
       velocity = new PVector(-1, 0);
     }
     size = 25;
+    award = 10;
     }
   }
 

@@ -78,7 +78,7 @@ void draw() {
   } else if (stage ==1) {
 
 
-
+    
 
     background(0);
     fill(255);
@@ -106,46 +106,36 @@ void draw() {
       b2.render();
       b2.update();
     }
-
-    Iterator<Enemy> it5 = Enemies.iterator();
-    while (it5.hasNext()) {
-      Enemy e = it5.next();
-      if (50 > dist(p1.location.x, p1.location.y, e.location.x+25, e.location.y-25)) {
-        it5.remove();
-        p1.shields--;
-      } else if (50 > dist(p2.location.x, p2.location.y, e.location.x+25, e.location.y-25)) {
-        it5.remove();
-        p2.shields--;
+    Iterator<Bullets> it1 = p1Bullets.iterator();
+    while (it1.hasNext()) {
+      Bullets b = it1.next();
+      if (b.location.x > 1920 || b.location.x < 0) {
+        it1.remove();
       }
-
-      Iterator<Bullets> it1 = p1Bullets.iterator();
-      while (it1.hasNext()) {
-        Bullets b = it1.next();
-        if (b.location.x > 1920 || b.location.x < 0) {
-          it1.remove();
-        }
-        if (25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
+      Iterator<Enemy> it5 = Enemies.iterator();
+      while (it5.hasNext()) {
+        Enemy e = it5.next();
+        if(25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
           p1.score = p1.score + e.award;
+          println(e.award);
         }
       }
     }
-
-    Iterator<Enemy> it6 = Enemies.iterator();
-    while (it6.hasNext()) {
-      Enemy e = it6.next();
-
-      Iterator<Bullets> it2 = p2Bullets.iterator();
-      while (it2.hasNext()) {
-        Bullets b2 = it2.next();
-        if (b2.location.x > 1920 || b2.location.x < 0) {
-          it2.remove();
-        }
-        if (25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
+    Iterator<Bullets> it2 = p2Bullets.iterator();
+    while (it2.hasNext()) {
+      Bullets b2 = it2.next();
+      if (b2.location.x > 1920 || b2.location.x < 0) {
+        it2.remove();
+      }
+           Iterator<Enemy> it6 = Enemies.iterator();
+      while (it6.hasNext()) {
+        Enemy e = it6.next();
+        if(25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
           it6.remove();
           it2.remove();
-          p2.score = p2.score + e.award;
+          p2.score = p2.score +  e.award;
         }
       }
     }
