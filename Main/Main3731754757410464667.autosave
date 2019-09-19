@@ -78,7 +78,6 @@ void draw() {
   } else if (stage ==1) {
 
 
-    
 
     background(0);
     fill(255);
@@ -112,15 +111,6 @@ void draw() {
       if (b.location.x > 1920 || b.location.x < 0) {
         it1.remove();
       }
-      Iterator<Enemy> it5 = Enemies.iterator();
-      while (it5.hasNext()) {
-        Enemy e = it5.next();
-        if(25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
-          it5.remove();
-          it1.remove();
-          p1.score = p1.score+10;
-        }
-      }
     }
     Iterator<Bullets> it2 = p2Bullets.iterator();
     while (it2.hasNext()) {
@@ -152,7 +142,7 @@ void draw() {
     }
 
     if (frameCount%100 == 0) {
-      Enemies.add(new Enemy(0));
+      Enemies.add(new Enemy());
     }
 
     for (Enemy en : Enemies) {
@@ -204,7 +194,7 @@ void draw() {
         }
       }
 
-      if (50 > dist(p2.location.x, p2.location.y, pow.location.x, pow.location.y) )
+      if (50 > sqrt(sq(p2.location.x-pow.location.x)+sq(p2.location.y-pow.location.y)) )
       {
         if (pow.type == 1 && p2.ammo<100)
         {
@@ -223,6 +213,7 @@ void draw() {
         }
       }
     }
+
     HUD();
   }
 }
