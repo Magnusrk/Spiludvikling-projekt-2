@@ -9,6 +9,7 @@ class Player {
   int colour;
   float angle;
   int player;
+  boolean dead=false;
 
   Player(PVector loc, int col, int p) {
     location = loc.get();
@@ -46,19 +47,30 @@ class Player {
     popMatrix();
   }
   void update() {
+    if (dead == false)
+    {
     velocity.x = sin(angle);
     velocity.y = -cos(angle);
     velocity.mult(3);
-    println(velocity.x);
-    println(velocity.y);
     location.add(velocity);
     velocity.add(acceleration);
     acceleration.mult(0);
+    }
     if (ammo > 100) {
       ammo = 100;
     }
     if (boost > 100) {
       boost = 100;
+    }
+    if ( location.x <25 || location.x>width-25)
+    {
+      shields = 0;
+      dead = true;
+    }
+    if ( location.y <25 || location.y>height-25)
+    {
+      shields = 0;
+      dead=true;
     }
   }
 
@@ -72,6 +84,8 @@ class Player {
 
   void boost()
   {
+    if (dead==false)
+    {
     velocity.x = sin(angle);
     velocity.y = -cos(angle);
     velocity.mult(10);
@@ -79,5 +93,6 @@ class Player {
     velocity.add(acceleration);
     acceleration.mult(0);
     boost = boost-1;
+    }
   }
 }
