@@ -129,7 +129,6 @@ void draw() {
 
     background(0);
     fill(255);
-    text(frameRate, 800, 200);
     if (frameCount%30==0)
     {
       bulletbuffer1=true;
