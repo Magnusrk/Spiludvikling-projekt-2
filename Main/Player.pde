@@ -75,6 +75,7 @@ class Player {
     if (shields ==0)
     {
       dead = true;
+      playerdeath.play();
       ellipse(location.x,location.y,150,150);
       if(frameCount %60==0)
       {

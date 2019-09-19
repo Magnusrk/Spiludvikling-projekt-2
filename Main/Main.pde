@@ -1,4 +1,11 @@
 import java.util.Iterator;
+import processing.sound.*;
+
+//sound files
+SoundFile blast;
+SoundFile enemydeath;
+SoundFile playerdeath;
+
 int counter = 0;
 ArrayList<Enemy> Enemies;
 ArrayList<Bullets> p1Bullets;
@@ -17,6 +24,10 @@ float[] stars3 = new float[800];
 
 void setup() {
   fullScreen();
+  
+  blast = new SoundFile(this, "blast.mp3");
+  enemydeath = new SoundFile(this, "enemydeath.mp3");
+  playerdeath = new SoundFile(this, "playerdeath.mp3");
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
