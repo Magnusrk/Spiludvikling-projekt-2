@@ -195,6 +195,11 @@ void draw() {
           p1.boost= p1.boost+50;
           it4.remove();
         }
+        if (pow.type == 3 && p1.shields<5)
+        {
+          p1.shields= p1.shields+1;
+          it4.remove();
+        }
       }
 
       if (50 > dist(p2.location.x, p2.location.y, pow.location.x, pow.location.y) )
@@ -207,6 +212,11 @@ void draw() {
         if (pow.type == 2)
         {
           p2.boost= p2.boost+50;
+          it4.remove();
+        }
+        if (pow.type == 3 && p2.shields<5)
+        {
+          p2.shields= p2.shields+1;
           it4.remove();
         }
       }
