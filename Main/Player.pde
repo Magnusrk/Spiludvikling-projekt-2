@@ -60,20 +60,27 @@ class Player {
     if (boost > 100) {
       boost = 100;
     }
-    if ( location.x <25 || location.x>width-25)
+    if ( location.x <20 || location.x>width-25)
     {
       shields = 0;
       dead = true;
     }
-    if ( location.y <25 || location.y>height-25)
+    if ( location.y <20 || location.y>height-25)
     {
       shields = 0;
       dead=true;
     }
+    if(shields ==0)
+    {
+      dead = true;
+    }
   }
 
   void shoot() {
+    if (dead==false)
+    {
     p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+    }
   }
 
   void boost()

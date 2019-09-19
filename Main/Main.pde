@@ -78,7 +78,7 @@ void draw() {
   } else if (stage ==1) {
 
 
-    
+
 
     background(0);
     fill(255);
@@ -115,7 +115,7 @@ void draw() {
       Iterator<Enemy> it5 = Enemies.iterator();
       while (it5.hasNext()) {
         Enemy e = it5.next();
-        if(25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
+        if (25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
           p1.score = p1.score+10;
@@ -164,17 +164,12 @@ void draw() {
     p2.render();
     controls();
 
-
     for (ParticleSystem ps : systems) {
       ps.addParticle();
       ps.run();
     }
-
-
     p1.update();
     p2.update();
-
-
 
 
     for (Powerup pu : PowerUps) {
