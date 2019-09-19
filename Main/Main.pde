@@ -78,6 +78,7 @@ void draw() {
   } else if (stage ==1) {
 
 
+    
 
     background(0);
     fill(255);
