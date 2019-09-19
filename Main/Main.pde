@@ -5,6 +5,7 @@ import processing.sound.*;
 SoundFile blast;
 SoundFile enemydeath;
 SoundFile playerdeath;
+SoundFile music;
 
 int counter = 0;
 ArrayList<Enemy> Enemies;
@@ -25,6 +26,8 @@ void setup() {
   blast = new SoundFile(this, "blast.mp3");
   enemydeath = new SoundFile(this, "enemydeath.mp3");
   playerdeath = new SoundFile(this, "playerdeath.mp3");
+  music = new SoundFile(this, "music.mp3");
+  music.play();
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
