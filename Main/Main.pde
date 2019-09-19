@@ -37,6 +37,25 @@ void setup() {
 
 
 void draw() {
+  if (p1.shields ==0 || p2.shields==0)
+  {
+    if (frameCount %200==0)
+    {
+      if (p1.score > p2.score)
+      {
+        stage =3;
+      }
+
+      if (p1.score < p2.score)
+      {
+        stage =4;
+      }
+      if (p1.score == p2.score)
+      {
+        stage =5;
+      }
+    }
+  }
   if (stage == 0)
   {
     background(0);
@@ -75,7 +94,23 @@ void draw() {
     rect(200, 100, 300, 100);
     fill(0);
     text("Back", 90, 140);
-  } else if (stage ==1) {
+  } else if (stage==3)
+  {
+    background(0);
+    fill(255);
+    text("Player 1 Wins", width/2-150, height/2);
+  } else if (stage ==4)
+  {
+    background(0);
+    fill(255);
+    text("Player 2 Wins", width/2-150, height/2);
+  } else if (stage ==5)
+  {
+    background(0);
+    fill(255);
+    text("Draw", width/2-100, height/2);
+  } else if (stage ==1) 
+  {
 
 
 
