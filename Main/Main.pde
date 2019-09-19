@@ -5,8 +5,8 @@ ArrayList<Bullets> p1Bullets;
 ArrayList<Bullets> p2Bullets;
 ArrayList<Powerup> PowerUps;
 ArrayList<ParticleSystem> systems;
-Player p1 = new Player(new PVector(500, 700), #FF0303);
-Player p2 = new Player(new PVector(1920-500, 700), #06CB2C);
+Player p1 = new Player(new PVector(500, 700), #FF0303, 1);
+Player p2 = new Player(new PVector(1920-500, 700), #06CB2C, 2);
 float test = 0;
 
 int stage =0;
@@ -127,6 +127,14 @@ void draw() {
       Bullets b2 = it2.next();
       if (b2.location.x > 1920 || b2.location.x < 0) {
         it2.remove();
+      }
+           Iterator<Enemy> it6 = Enemies.iterator();
+      while (it6.hasNext()) {
+        Enemy e = it6.next();
+        if(25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
+          it6.remove();
+          it2.remove();
+        }
       }
     }
     Iterator<ParticleSystem> it3 = systems.iterator();
