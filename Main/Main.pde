@@ -203,6 +203,7 @@ void draw() {
         }
       }
     }
+    //Iterates through new enemies to check for collisions
     Iterator<Enemy> it7 = Enemies2.iterator();
     while (it7.hasNext()) {
       Enemy e3 = it7.next();
@@ -292,6 +293,10 @@ void draw() {
           it6.remove();
           it2.remove();
           p2.score = p2.score + e.award;
+          Enemies2.add(new Enemy(0, new PVector(1, 1), e.location.get()));
+          Enemies2.add(new Enemy(0, new PVector(1, -1), e.location.get()));
+          Enemies2.add(new Enemy(0, new PVector(-1, 1), e.location.get()));
+          Enemies2.add(new Enemy(0, new PVector(-1, -1), e.location.get()));
         }
       }
     }
