@@ -49,12 +49,12 @@ class Player {
   void update() {
     if (dead == false)
     {
-    velocity.x = sin(angle);
-    velocity.y = -cos(angle);
-    velocity.mult(3);
-    location.add(velocity);
-    velocity.add(acceleration);
-    acceleration.mult(0);
+      velocity.x = sin(angle);
+      velocity.y = -cos(angle);
+      velocity.mult(3);
+      location.add(velocity);
+      velocity.add(acceleration);
+      acceleration.mult(0);
     }
     if (ammo > 100) {
       ammo = 100;
@@ -72,9 +72,15 @@ class Player {
       shields = 0;
       dead=true;
     }
-    if(shields ==0)
+    if (shields ==0)
     {
       dead = true;
+      ellipse(location.x,location.y,150,150);
+      if(frameCount %60==0)
+      {
+      location.x=location.x+10000;
+      location.y=location.y+10000;
+      }
     }
   }
 
@@ -82,30 +88,27 @@ class Player {
 
     if (dead==false)
     {
-    if(player == 1) 
-    {  
-    p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
-    } 
-    else if(player == 2) 
-    {
-      p2Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
-
+      if (player == 1) 
+      {  
+        p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+      } else if (player == 2) 
+      {
+        p2Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+      }
     }
-  }
-  
   }
 
   void boost()
   {
     if (dead==false)
     {
-    velocity.x = sin(angle);
-    velocity.y = -cos(angle);
-    velocity.mult(10);
-    location.add(velocity);
-    velocity.add(acceleration);
-    acceleration.mult(0);
-    boost = boost-1;
+      velocity.x = sin(angle);
+      velocity.y = -cos(angle);
+      velocity.mult(10);
+      location.add(velocity);
+      velocity.add(acceleration);
+      acceleration.mult(0);
+      boost = boost-1;
     }
   }
 }
