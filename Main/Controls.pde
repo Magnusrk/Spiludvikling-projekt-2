@@ -11,7 +11,7 @@ Boolean downPressed = false;
 Boolean rightPressed = false;
 
 
-float AddAngle = 0.1;
+float AddAngle = 0.05;
 boolean bulletbuffer1 = true;
 boolean bulletbuffer2 = true;
 

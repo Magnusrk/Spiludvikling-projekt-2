@@ -8,8 +8,9 @@ class Player {
   int shields;
   int colour;
   float angle;
+  int player;
 
-  Player(PVector loc, int col) {
+  Player(PVector loc, int col, int p) {
     location = loc.get();
     velocity = new PVector(0, -1);
     acceleration = new PVector(0, 0);
@@ -19,6 +20,7 @@ class Player {
     shields = 3;
     colour = col;
     angle = 2*PI;
+    player = p;
   }
 
   void render() {
@@ -61,7 +63,11 @@ class Player {
   }
 
   void shoot() {
+    if(player == 1) {
     p1Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+    } else if(player == 2) {
+      p2Bullets.add(new Bullets(location.get(), velocity.get().mult(5)));
+    }
   }
 
   void boost()
