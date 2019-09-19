@@ -5,10 +5,10 @@ import processing.sound.*;
 SoundFile blast;
 SoundFile enemydeath;
 SoundFile playerdeath;
-SoundFile music;
 
 int counter = 0;
 ArrayList<Enemy> Enemies;
+ArrayList<Enemy> Enemies2;
 ArrayList<Bullets> p1Bullets;
 ArrayList<Bullets> p2Bullets;
 ArrayList<Powerup> PowerUps;
@@ -22,18 +22,17 @@ float[] stars2 = new float[800];
 float[] stars3 = new float[800];
 void setup() {
   fullScreen();
-
+  
   blast = new SoundFile(this, "blast.mp3");
   enemydeath = new SoundFile(this, "enemydeath.mp3");
   playerdeath = new SoundFile(this, "playerdeath.mp3");
-  music = new SoundFile(this, "music.mp3");
-  music.play();
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
   p1Bullets = new ArrayList<Bullets>();
   p2Bullets = new ArrayList<Bullets>();
   PowerUps = new ArrayList<Powerup>();
+  Enemies2 = new ArrayList<Enemy>();
   systems.add(new ParticleSystem(new PVector(p1.location.x, p1.location.y+40), 255, 108, 10));
   systems.add(new ParticleSystem(new PVector(p2.location.x, p2.location.y+40), 255, 108, 10));
   for (int i=0; i<800; i++)
@@ -44,7 +43,7 @@ void setup() {
   }
 }
 void draw() {
-  if (p1.shields <=0 || p2.shields<=0)
+  if (p1.shields ==0 || p2.shields==0)
   {
     if (frameCount %200==0)
     {
@@ -147,6 +146,10 @@ void draw() {
       b2.render();
       b2.update();
     }
+    for (Enemy e2 : Enemies2) {
+      e2.render();
+      e2.update();
+    }
     //Control collisions with enemies players and bullets
     Iterator<Enemy> it5 = Enemies.iterator();
     while (it5.hasNext()) {
@@ -186,22 +189,87 @@ void draw() {
         if (e.type == 0 && 25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
-          enemydeath.play();
           p1.score = p1.score + e.award;
         } 
         // Enemy type 1 collision with player 1 bullets
         else if (e.type == 1 && 55 > dist(e.location.x, e.location.y, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
-          enemydeath.play();
           p1.score = p1.score + e.award;
-          //Enemies.add(new Enemy(0, new PVector(1, 1), e.location));
-          //Enemies.add(new Enemy(0, new PVector(1, -1), e.location));
-          //Enemies.add(new Enemy(0, new PVector(-1, 1), e.location));
-          //Enemies.add(new Enemy(0, new PVector(-1, -1), e.location));
+          Enemies2.add(new Enemy(0, new PVector(1, 1), e.location.get()));
+          Enemies2.add(new Enemy(0, new PVector(1, -1), e.location.get()));
+          Enemies2.add(new Enemy(0, new PVector(-1, 1), e.location.get()));
+          Enemies2.add(new Enemy(0, new PVector(-1, -1), e.location.get()));
         }
       }
     }
+    Iterator<Enemy> it7 = Enemies2.iterator();
+    while (it7.hasNext()) {
+      Enemy e3 = it7.next();
+            if (e3.type == 0 && 50 > dist(p1.location.x, p1.location.y, e3.location.x+25, e3.location.y-25)) {
+        bulletbuffer1 = false;
+        it7.remove();
+        p1.shields--;
+        //Player 2 collision with enemy type 0
+      } else if (e3.type == 0 && 50 > dist(p2.location.x, p2.location.y, e3.location.x+25, e3.location.y-25)) {
+        bulletbuffer2 = false;
+        it7.remove();
+        p2.shields--;
+      }
+      //Player 2 collision with enemy type 1
+      else if (e3.type == 1 && 85 > dist(p2.location.x, p2.location.y, e3.location.x, e3.location.y)) {
+        bulletbuffer2 = false;
+        it7.remove();
+        p2.shields--;
+      }
+      //Player 1 collision with enemy type 1
+      else if (e3.type == 1 && 85 > dist(p1.location.x, p1.location.y, e3.location.x, e3.location.y)) {
+        bulletbuffer1 = false;
+        it7.remove();
+        p1.shields--;
+      }
+      //Iterates through player 2 bullets to check collisions with enemies
+      Iterator<Bullets> it8 = p2Bullets.iterator();
+      while (it8.hasNext()) {
+        Bullets b3 = it8.next();
+        //Check if bullets have left the screen
+        if (b3.location.x > 1920 || b3.location.x < 0) {
+          it8.remove();
+        }
+        //bullet collisions with type 0 enemies
+        if (e3.type == 0 && 25 > dist(e3.location.x+25, e3.location.y-25, b3.location.x, b3.location.y)) {
+          it7.remove();
+          it8.remove();
+          p2.score = p2.score + e3.award;
+          //bullet collisions with type 1 enemies
+        } else if (e3.type == 1 && 55 > dist(e3.location.x, e3.location.y, b3.location.x, b3.location.y)) {
+          it7.remove();
+          it8.remove();
+          p2.score = p2.score + e3.award;
+        }
+      }
+            Iterator<Bullets> it9 = p1Bullets.iterator();
+      while (it9.hasNext()) {
+        Bullets b4 = it9.next();
+        //Check if bullets have left the screen
+        if (b4.location.x > 1920 || b4.location.x < 0) {
+          it9.remove();
+        }
+        //bullet collisions with type 0 enemies
+        if (e3.type == 0 && 25 > dist(e3.location.x+25, e3.location.y-25, b4.location.x, b4.location.y)) {
+          it7.remove();
+          it9.remove();
+          p1.score = p1.score + e3.award;
+          //bullet collisions with type 1 enemies
+        } else if (e3.type == 1 && 55 > dist(e3.location.x, e3.location.y, b4.location.x, b4.location.y)) {
+          it7.remove();
+          it9.remove();
+          p1.score = p1.score + e3.award;
+        }
+      }
+    }
+      
+      
     //Iterates through enemies to check for collisions
     Iterator<Enemy> it6 = Enemies.iterator();
     while (it6.hasNext()) {
@@ -218,13 +286,11 @@ void draw() {
         if (e.type == 0 && 25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
           it6.remove();
           it2.remove();
-          enemydeath.play();
           p2.score = p2.score + e.award;
           //bullet collisions with type 1 enemies
         } else if (e.type == 1 && 55 > dist(e.location.x, e.location.y, b2.location.x, b2.location.y)) {
           it6.remove();
           it2.remove();
-          enemydeath.play();
           p2.score = p2.score + e.award;
         }
       }
