@@ -8,13 +8,10 @@ ArrayList<ParticleSystem> systems;
 Player p1 = new Player(new PVector(500, 700), #FF0303, 1);
 Player p2 = new Player(new PVector(1920-500, 700), #06CB2C, 2);
 float test = 0;
-
 int stage =0;
-
 float[] stars = new float[800];
 float[] stars2 = new float[800];
 float[] stars3 = new float[800];
-
 void setup() {
   fullScreen();
   systems = new ArrayList<ParticleSystem>();
@@ -25,7 +22,6 @@ void setup() {
   PowerUps = new ArrayList<Powerup>();
   systems.add(new ParticleSystem(new PVector(p1.location.x, p1.location.y+40), 255, 108, 10));
   systems.add(new ParticleSystem(new PVector(p2.location.x, p2.location.y+40), 255, 108, 10));
-
   for (int i=0; i<800; i++)
   {
     stars[i] = (random(0, width));
@@ -33,9 +29,6 @@ void setup() {
     stars3[i] = (random(1, 3));
   }
 }
-
-
-
 void draw() {
   if (stage == 0)
   {
@@ -44,17 +37,13 @@ void draw() {
     {
       rect(stars[i], stars2[i], stars3[i], stars3[i]);
     }
-
     rectMode(CENTER);
     rect(width/2, height/2, 300, 100);
     rect(width/2, height/2+150, 300, 100);
-
     textSize(50);
     fill(0);
     text("Play", width/2-45, height/2+10);
     text("Controls", width/2-100, height/2+170);
-
-
     fill(255);
     textSize(100);
     text("TITLE", 800, 300);
@@ -66,30 +55,22 @@ void draw() {
     text("Shoot: s", 100, 600);
     text("Boost: w", 100, 700);
     text("Steer: a + d", 100, 800);
-
     text("Player 2", 1000, 500);
     text("Shoot: Down", 1000, 600);
     text("Boost: Up", 1000, 700);
     text("Steer: Left + Right", 1000, 800);
-
     rect(200, 100, 300, 100);
     fill(0);
     text("Back", 90, 140);
   } else if (stage ==1) {
-
-
-
-
     background(0);
     fill(255);
     text(frameRate, 800, 200);
-
     if (frameCount%30==0)
     {
       bulletbuffer1=true;
       bulletbuffer2=true;
     }
-
     pushMatrix();
     noStroke();
     for (int i=0; i<800; i++)
@@ -97,52 +78,88 @@ void draw() {
       rect(stars[i], stars2[i], stars3[i], stars3[i]);
     }
     popMatrix();
-
+    //Render and update player 1 bullets
     for (Bullets b1 : p1Bullets) {
       b1.render();
       b1.update();
     }
+    //Render and update player 2 bullets
     for (Bullets b2 : p2Bullets) {
       b2.render();
       b2.update();
     }
-
+    //Control collisions with enemies players and bullets
     Iterator<Enemy> it5 = Enemies.iterator();
     while (it5.hasNext()) {
       Enemy e = it5.next();
-      if (50 > dist(p1.location.x, p1.location.y, e.location.x+25, e.location.y-25)) {
+      //Player 1 collision with enemy type 0
+      if (e.type == 0 && 50 > dist(p1.location.x, p1.location.y, e.location.x+25, e.location.y-25)) {
+        bulletbuffer1 = false;
         it5.remove();
         p1.shields--;
-      } else if (50 > dist(p2.location.x, p2.location.y, e.location.x+25, e.location.y-25)) {
+        //Player 2 collision with enemy type 0
+      } else if (e.type == 0 && 50 > dist(p2.location.x, p2.location.y, e.location.x+25, e.location.y-25)) {
+        bulletbuffer2 = false;
         it5.remove();
         p2.shields--;
       }
-
+      //Player 2 collision with enemy type 1
+      else if (e.type == 1 && 85 > dist(p2.location.x, p2.location.y, e.location.x, e.location.y)) {
+        bulletbuffer2 = false;
+        it5.remove();
+        p2.shields--;
+      }
+      //Player 1 collision with enemy type 1
+      else if (e.type == 1 && 85 > dist(p1.location.x, p1.location.y, e.location.x, e.location.y)) {
+        bulletbuffer1 = false;
+        it5.remove();
+        p1.shields--;
+      }
+      //Iterates through player 1 bullets to check collisions
       Iterator<Bullets> it1 = p1Bullets.iterator();
       while (it1.hasNext()) {
         Bullets b = it1.next();
+        //Check if bullets have left the screen
         if (b.location.x > 1920 || b.location.x < 0) {
           it1.remove();
         }
-        if (25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
+        //Enemy type 0 collision with player 1 bullets
+        if (e.type == 0 && 25 > dist(e.location.x+25, e.location.y-25, b.location.x, b.location.y)) {
           it5.remove();
           it1.remove();
           p1.score = p1.score + e.award;
+        } 
+        // Enemy type 1 collision with player 1 bullets
+        else if (e.type == 1 && 55 > dist(e.location.x, e.location.y, b.location.x, b.location.y)) {
+          it5.remove();
+          it1.remove();
+          p1.score = p1.score + e.award;
+          //Enemies.add(new Enemy(0, new PVector(1, 1), e.location));
+          //Enemies.add(new Enemy(0, new PVector(1, -1), e.location));
+          //Enemies.add(new Enemy(0, new PVector(-1, 1), e.location));
+          //Enemies.add(new Enemy(0, new PVector(-1, -1), e.location));
         }
       }
     }
-
+    //Iterates through enemies to check for collisions
     Iterator<Enemy> it6 = Enemies.iterator();
     while (it6.hasNext()) {
       Enemy e = it6.next();
-
+      //Iterates through player 2 bullets to check collisions with enemies
       Iterator<Bullets> it2 = p2Bullets.iterator();
       while (it2.hasNext()) {
         Bullets b2 = it2.next();
+        //Check if bullets have left the screen
         if (b2.location.x > 1920 || b2.location.x < 0) {
           it2.remove();
         }
-        if (25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
+        //bullet collisions with type 0 enemies
+        if (e.type == 0 && 25 > dist(e.location.x+25, e.location.y-25, b2.location.x, b2.location.y)) {
+          it6.remove();
+          it2.remove();
+          p2.score = p2.score + e.award;
+          //bullet collisions with type 1 enemies
+        } else if (e.type == 1 && 55 > dist(e.location.x, e.location.y, b2.location.x, b2.location.y)) {
           it6.remove();
           it2.remove();
           p2.score = p2.score + e.award;
@@ -161,25 +178,24 @@ void draw() {
       }
       test++;
     }
-
-
-
     if (frameCount%120 == 0) {
       float fasf = random(0, 1);
       if ( fasf < 0.5) {
         PowerUps.add(new Powerup(new PVector(random(100, 1820), random(100, 980))));
       }
     }
-
     if (frameCount%100 == 0) {
-      Enemies.add(new Enemy(0));
+      float random = random(0, 1);
+      if (random < 0.5) {
+        Enemies.add(new Enemy(0));
+      } else {
+        Enemies.add(new Enemy(1));
+      }
     }
-
     for (Enemy en : Enemies) {
       en.render();
       en.update();
     }
-
     p1.render();
     p2.render();
     controls();
@@ -190,12 +206,9 @@ void draw() {
     }
     p1.update();
     p2.update();
-
-
     for (Powerup pu : PowerUps) {
       pu.render();
     }
-
     Iterator<Powerup> it4 = PowerUps.iterator();
 
     while (it4.hasNext()) {
@@ -218,7 +231,6 @@ void draw() {
           it4.remove();
         }
       }
-
       if (50 > dist(p2.location.x, p2.location.y, pow.location.x, pow.location.y) )
       {
         if (pow.type == 1 && p2.ammo<100)
