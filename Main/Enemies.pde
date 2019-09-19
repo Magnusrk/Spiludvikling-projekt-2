@@ -46,7 +46,7 @@ class Enemy
   void render()
   {
     if (type == 0) {
-      fill(255, 0, 0);
+      fill(#AD5309);
       textSize(80);
       text("*", location.x, location.y);
     }

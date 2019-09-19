@@ -5,6 +5,9 @@ import processing.sound.*;
 SoundFile blast;
 SoundFile enemydeath;
 SoundFile playerdeath;
+SoundFile music;
+
+PFont font100;
 
 int counter = 0;
 ArrayList<Enemy> Enemies;
@@ -22,10 +25,12 @@ float[] stars2 = new float[800];
 float[] stars3 = new float[800];
 void setup() {
   fullScreen();
-  
+  font100 = loadFont("font100.vlw");
   blast = new SoundFile(this, "blast.mp3");
   enemydeath = new SoundFile(this, "enemydeath.mp3");
   playerdeath = new SoundFile(this, "playerdeath.mp3");
+  music = new SoundFile(this, "music.mp3");
+  music.play();
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
@@ -43,7 +48,7 @@ void setup() {
   }
 }
 void draw() {
-  if (p1.shields ==0 || p2.shields==0)
+  if (p1.shields <=0 || p2.shields<=0)
   {
     if (frameCount %200==0)
     {
@@ -78,7 +83,8 @@ void draw() {
     text("Controls", width/2-100, height/2+170);
     fill(255);
     textSize(100);
-    text("TITLE", 800, 300);
+    textFont(font100);
+    text("Asteroid Field", 650, 300);
   } else if (stage==2)
   {
     background(0);
@@ -206,7 +212,7 @@ void draw() {
     Iterator<Enemy> it7 = Enemies2.iterator();
     while (it7.hasNext()) {
       Enemy e3 = it7.next();
-            if (e3.type == 0 && 50 > dist(p1.location.x, p1.location.y, e3.location.x+25, e3.location.y-25)) {
+      if (e3.type == 0 && 50 > dist(p1.location.x, p1.location.y, e3.location.x+25, e3.location.y-25)) {
         bulletbuffer1 = false;
         it7.remove();
         p1.shields--;
@@ -248,7 +254,7 @@ void draw() {
           p2.score = p2.score + e3.award;
         }
       }
-            Iterator<Bullets> it9 = p1Bullets.iterator();
+      Iterator<Bullets> it9 = p1Bullets.iterator();
       while (it9.hasNext()) {
         Bullets b4 = it9.next();
         //Check if bullets have left the screen
@@ -268,8 +274,8 @@ void draw() {
         }
       }
     }
-      
-      
+
+
     //Iterates through enemies to check for collisions
     Iterator<Enemy> it6 = Enemies.iterator();
     while (it6.hasNext()) {
