@@ -184,17 +184,12 @@ void draw() {
     p2.render();
     controls();
 
-
     for (ParticleSystem ps : systems) {
       ps.addParticle();
       ps.run();
     }
-
-
     p1.update();
     p2.update();
-
-
 
 
     for (Powerup pu : PowerUps) {
