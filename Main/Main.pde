@@ -94,22 +94,29 @@ void draw() {
     rect(200, 100, 300, 100);
     fill(0);
     text("Back", 90, 140);
-  } else if (stage==3)
+  }
+
+  pushMatrix();
+  textSize(100);
+  if (stage==3)
   {
     background(0);
     fill(255);
-    text("Player 1 Wins", width/2-150, height/2);
+    text("Player 1 Wins", width/2-300, height/2);
   } else if (stage ==4)
   {
     background(0);
     fill(255);
-    text("Player 2 Wins", width/2-150, height/2);
+    text("Player 2 Wins", width/2-300, height/2);
   } else if (stage ==5)
   {
     background(0);
     fill(255);
     text("Draw", width/2-100, height/2);
-  } else if (stage ==1) 
+  } 
+  popMatrix();
+
+  if (stage ==1) 
   {
 
 
