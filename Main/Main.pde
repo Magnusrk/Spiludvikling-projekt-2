@@ -24,7 +24,7 @@ void setup() {
 
   blast = new SoundFile(this, "blast.mp3");
   enemydeath = new SoundFile(this, "enemydeath.mp3");
-  playerdeath = new SoundFile(this, "playerdeath.wav");
+  playerdeath = new SoundFile(this, "playerdeath.mp3");
   systems = new ArrayList<ParticleSystem>();
   Enemies = new ArrayList<Enemy>();
   frameRate(60);
@@ -41,7 +41,7 @@ void setup() {
   }
 }
 void draw() {
-  if (p1.shields ==0 || p2.shields==0)
+  if (p1.shields <=0 || p2.shields<=0)
   {
     if (frameCount %200==0)
     {

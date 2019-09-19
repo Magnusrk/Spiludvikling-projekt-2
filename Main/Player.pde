@@ -10,6 +10,7 @@ class Player {
   float angle;
   int player;
   boolean dead=false;
+  boolean playing =false;
 
   Player(PVector loc, int col, int p) {
     location = loc.get();
@@ -81,6 +82,17 @@ class Player {
       {
         location.x=location.x+10000;
         location.y=location.y+10000;
+      }
+      
+      if(playing==false)
+      {
+      playerdeath.play();
+      shields=-1;
+      }
+      
+      if(playerdeath.isPlaying())
+      {
+        playing=true;
       }
     }
   }
