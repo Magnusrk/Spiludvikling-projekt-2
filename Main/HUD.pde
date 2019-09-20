@@ -27,14 +27,14 @@ void HUD()
     }
   }
   fill(#8E05FF);
-  text("Shields: ", 100, 100);
-  text("Ammo: "+ p1.ammo, 100, 150);
+  text("Shields: ", 80, 100);
+  text("Ammo: "+ p1.ammo, 80, 150);
   rectMode(CORNERS);
   fill(0, 0, 255);
   stroke(255);
   rect(200, 180, 200+p1.boost, 200);
   fill(#8E05FF);
-  text("Boost: ", 100, 200);
+  text("Boost: ", 80, 200);
   rectMode(CENTER);
   textSize(50);
   text("Score: "+p1.score, 500, 200);
@@ -68,16 +68,16 @@ void HUD()
     }
   }
   fill(#8E05FF);
-  text("Shields: ", 1500, 100);
-  text("Ammo: "+ p2.ammo, 1500, 150);
+  text("Shields: ", 1480, 100);
+  text("Ammo: "+ p2.ammo, 1480, 150);
   rectMode(CORNERS);
   fill(0, 0, 255);
   stroke(255);
   rect(1600, 180, 1600+p2.boost, 200);
   fill(#8E05FF);
-  text("Boost: ", 1500, 200);
+  text("Boost: ", 1480, 200);
   rectMode(CENTER);
   textSize(50);
-  text("Score: "+p2.score, 1000, 200);
+  text("Score: "+p2.score, 980, 200);
   popMatrix();
 }

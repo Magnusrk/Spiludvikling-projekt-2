@@ -48,25 +48,26 @@ void setup() {
   }
 }
 void draw() {
-  if (p1.shields <=0 || p2.shields<=0)
-  {
-    if (frameCount %200==0)
-    {
-      if (p1.score > p2.score)
-      {
-        stage =3;
-      }
 
-      if (p1.score < p2.score)
-      {
-        stage =4;
-      }
-      if (p1.score == p2.score)
-      {
-        stage =5;
-      }
-    }
+  if (p1.score > 1000)
+  {
+    stage =3;
   }
+
+  if (p2.score > 1000)
+  {
+    stage =4;
+  }
+   if (p2.dead ==true)
+  {
+    stage =3;
+  }
+  
+  if (p1.dead ==true)
+  {
+    stage =4;
+  }
+
   if (stage == 0)
   {
     background(0);
@@ -79,16 +80,17 @@ void draw() {
     rect(width/2, height/2+150, 300, 100);
     textSize(50);
     fill(0);
-    text("Play", width/2-45, height/2+10);
-    text("Controls", width/2-100, height/2+170);
+    text("Play", width/2-60, height/2+15);
+    text("Controls", width/2-120, height/2+170);
     fill(255);
     textSize(100);
     textFont(font100);
-    text("Asteroid Field", 650, 300);
+    text("Asteroid Field", 570, 300);
   } else if (stage==2)
   {
     background(0);
     fill(255);
+    textSize(70);
     text("Player 1", 100, 500);
     text("Shoot: s", 100, 600);
     text("Boost: w", 100, 700);
@@ -99,27 +101,26 @@ void draw() {
     text("Steer: Left + Right", 1000, 800);
     rect(200, 100, 300, 100);
     fill(0);
+    textSize(100);
     text("Back", 90, 140);
-  } else if (stage ==1) {
   }
-
   pushMatrix();
   textSize(100);
   if (stage==3)
   {
     background(0);
     fill(255);
-    text("Player 1 Wins", width/2-300, height/2);
+    text("Player 1 Wins", width/2-400, height/2);
   } else if (stage ==4)
   {
     background(0);
     fill(255);
-    text("Player 2 Wins", width/2-300, height/2);
+    text("Player 2 Wins", width/2-400, height/2);
   } else if (stage ==5)
   {
     background(0);
     fill(255);
-    text("Draw", width/2-100, height/2);
+    text("Draw", width/2-120, height/2);
   } 
   popMatrix();
 
