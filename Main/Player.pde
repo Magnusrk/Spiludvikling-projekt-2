@@ -16,7 +16,7 @@ class Player {
     location = loc.get();
     velocity = new PVector(0, -1);
     acceleration = new PVector(0, 0);
-    ammo = 100;
+    ammo = 30;
     score = 0;
     boost = 100;
     shields = 3;
