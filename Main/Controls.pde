@@ -146,6 +146,7 @@ void controls()
   }
 }
 
+//Controls for menues
 void mousePressed()
 {
   if ((mouseX>width/2-150) && (mouseY>height/2-50) && (mouseX<width/2+150) && (mouseY<height/2+50) && stage==0) 

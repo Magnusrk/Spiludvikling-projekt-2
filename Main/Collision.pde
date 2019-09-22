@@ -1,3 +1,4 @@
+//Collision between enemies and friendly bullets
 void bulletEnemyCollision(Enemy ene, Bullets bul, int type, float dist, Iterator i, Iterator i2, float displacement, Player p) {
   if (ene.type == type && dist > dist(ene.location.x+displacement, ene.location.y-displacement, bul.location.x, bul.location.y)) {
     i.remove();
@@ -11,7 +12,7 @@ void bulletEnemyCollision(Enemy ene, Bullets bul, int type, float dist, Iterator
     }
   }
 }
-
+//Collision between enemies and player models
 void playerEnemyCollision(Player p, int type, float dist, Enemy ene, float displacement, Iterator i) {
   if (ene.type == type && dist > dist(p.location.x, p.location.y, ene.location.x+displacement, ene.location.y-displacement)) {
     bulletbuffer1 = false;
@@ -19,7 +20,7 @@ void playerEnemyCollision(Player p, int type, float dist, Enemy ene, float displ
     p.shields--;
   }
 }
-
+//Collection of all collision checks in the game
 void doCollision() {
       Iterator<Enemy> EnemyChecker1 = Enemies.iterator();
     while (EnemyChecker1.hasNext()) {

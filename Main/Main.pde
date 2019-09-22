@@ -6,7 +6,7 @@ SoundFile blast;
 SoundFile enemydeath;
 SoundFile playerdeath;
 SoundFile music;
-//Font used for EVERYTHING
+//Font
 PFont font100;
 ArrayList<Enemy> Enemies;
 ArrayList<Enemy> Enemies2;
@@ -47,6 +47,7 @@ void setup() {
   Enemies2 = new ArrayList<Enemy>();
   systems.add(new ParticleSystem(new PVector(p1.location.x, p1.location.y+40), 255, 108, 10));
   systems.add(new ParticleSystem(new PVector(p2.location.x, p2.location.y+40), 255, 108, 10));
+  //Initializes stars
   for (int i=0; i<800; i++)
   {
     stars[i] = (random(0, width));
@@ -59,6 +60,7 @@ void draw() {
   setStages();
   if (stage == 1) 
   {
+    //Design for main game
     background(0);
     rectMode(CORNERS);
     noStroke();
@@ -68,7 +70,7 @@ void draw() {
     rect(0,1080, 1920, 1070);
     rect(1920, 1080,1910, 0);
     rectMode(CENTER);
-    //load controls
+    //Load controls
     controls();
     //Determines wheter the player can shoot
     if (frameCount%30==0)
@@ -105,6 +107,7 @@ void draw() {
     renderElements();
     //Control collisions with enemies players and bullets
     doCollision();
+    //Determines location of particlesystems behind player models
     Iterator<ParticleSystem> it3 = systems.iterator();
     while (it3.hasNext()) {
       ParticleSystem p = it3.next();
@@ -117,6 +120,7 @@ void draw() {
       }
       particleDecider++;
     }
+    //Displays HUD over the rest of the game
     HUD();
   }
 }
